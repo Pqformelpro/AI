@@ -11,12 +11,12 @@ import neat
 import pickle
 import os, os.path
 
-level = "SonicTheHedgehog-Genesis.Act1"
+level = "GreenHillZone.Act1"
 
 level_name = level[:level.find(".")]
 level_act = level[level.find(".")+1:len(level)]
 
-env = retro.make(level_name, level_act)
+env = retro.make('SonicTheHedgehog-Genesis', level)
 
 imgarray = []
 
