@@ -10,7 +10,12 @@ import cv2
 import neat
 import pickle
 
-env = retro.make('SonicTheHedgehog-Genesis', 'GreenHillZone.Act1')
+level = "SonicTheHedgehog-Genesis.Act1"
+
+level_name = level[:level.find(".")]
+level_act = level[level.find(".")+1:len(level)]
+
+env = retro.make(level_name, level_act)
 
 imgarray = []
 
@@ -135,3 +140,15 @@ p.add_reporter(stats)
 p.add_reporter(neat.Checkpointer(10))
 
 winner = p.run(eval_genomes)
+    
+file_path = "solutions/" + level_name + "/" + level_act
+    
+if len([name for name in os.listdir(file_path)]) >= 10:
+    file_name = "solution_0"+str(len([name for name in os.listdir(file_path)])+1)
+else:
+    file_name = "solution_00"+str(len([name for name in os.listdir(file_path)])+1)
+    
+with open(file_path + "/" + file_name + ".pkl", 'wb') as output:
+    pickle.dump(winner, output, 1)
+
+env.close()
