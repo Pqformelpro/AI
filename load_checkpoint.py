@@ -9,6 +9,7 @@ import numpy as np
 import cv2 
 import neat
 import pickle
+import os, os.path
 
 level = "SonicTheHedgehog-Genesis.Act1"
 
